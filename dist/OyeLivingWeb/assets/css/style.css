@@ -1,0 +1,175 @@
+a, button{outline: none !important; text-decoration: none !important; cursor: pointer;}
+a, p, h1, h2, h3, h4, h5, h6, span{font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif; }
+button{border:0;}
+.has-error .form-control{box-shadow: none !important;}
+
+.animateIt{animation: 1s alertAnim forwards;}
+.ui.selection.dropdown, select.ui.dropdown{width: 100%;}
+.ui.search.selection.dropdown>input.search{    padding: 10px 0px !important;}
+
+.pageTitle{width: 100%; height: auto; padding:12px 20px; background: #FFF; border-radius: 2px; box-shadow: 1px 2px 15px #e5e5e5;    -webkit-box-shadow: 1px 2px 15px #e5e5e5; }
+.pageTitle h3{font-size: 16px; font-weight: 500; color: #58666e; margin: 0; letter-spacing: 2px;    text-transform: uppercase;}
+
+thead{background: #fff; color: #555;}
+thead tr th{ min-width: 75px; text-align:left; border-bottom: 1px solid #e6e6e6 !important; padding: 10px 0px !important; height: 40px; vertical-align: baseline !important;}
+tbody tr {background: #fff;}
+tbody tr td{ text-align:left;border-top:0px !important; border-bottom: 0px solid #e6e6e6; padding: 10px 0px !important; height: 60px; vertical-align: inherit !important;}
+
+.card {
+  border-radius: 2px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  padding: 20px;
+  margin-top:15px;
+  width: 100%; float: left;
+  box-shadow: 1px 2px 15px #e5e5e5;
+  -webkit-box-shadow: 1px 2px 15px #e5e5e5;
+}
+
+.headingOrange {
+  color: #ed8a19;
+}
+
+
+.mdButton1 {
+  -webkit-box-shadow: 0 5px 15px 0 rgba(0,0,0,0.15);
+  box-shadow: 0 5px 15px 0 rgba(0,0,0,0.15);
+  background-color: #F90;
+  color: #ffffff;
+  border-width: 0;
+  border-style: solid;
+  border-color: transparent;
+  display: inline-block;
+  padding: 1.0625em 1.875em;
+  border-width: 0;
+  border-style: solid;
+  border-color: transparent;
+  border-radius: 3px;
+  color: #ffffff;
+  font-family: ShopifySans, Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  font-size: 1em;
+  line-height: 1.133;
+  -webkit-font-smoothing: antialiased;
+  -webkit-transition: 150ms ease;
+  transition: 150ms ease;
+  -webkit-transition-property: background-color border-color color;
+  transition-property: background-color border-color color;
+  text-align: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+.mdButton1:hover, .mdButton1:focus {
+  background-color: #23A8E1;
+  color: #ffffff;
+}
+
+.ui.selection.dropdown, select.ui.dropdown{width: 100%;}
+
+.main-wrapper {
+  padding-top:50px;
+   background: #f0f3f4;
+   min-height: 850px;
+}
+
+@keyframes alertAnim {
+  from {
+      opacity:0;
+      transform: translateY(-20px);
+  }
+  to {
+      opacity:1;
+      transform: translateY(0);
+  }
+}
+
+.alerts{
+  color:red;
+  font-size: 14px;
+  font-family: Poppins;
+} 
+
+.red{
+  color:red;
+}
+.clsAlignCenter{
+  text-align: center;
+}
+.clsthBorder{
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.clsBorder{
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+
+.clsTotalInvoice{
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+ul.clsTxtIndnt li{
+  list-style-type:none;
+}
+
+#dashboard, #association, #block, #unit{
+  color: #b33951;
+  font-family: Poppins;
+  font-size: 18px;
+}
+
+/* ---------------------------------------------------
+SIDEBAR STYLE
+----------------------------------------------------- */
+
+.wrapper {
+  display: flex;
+  width: 100%;
+}
+
+#sidebar {
+  width: 250px;
+  margin-left: -250px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 999;
+  color: #fff;
+  transition: all 0.3s;
+}
+
+#sidebar.active {
+/* margin-left: -250px; */
+margin-left: 0px;
+}
+
+/* ---------------------------------------------------
+  CONTENT STYLE
+----------------------------------------------------- */
+
+#content {
+/* width: calc(100% - 250px); */
+  width: 100%;
+  min-height: 100vh;
+  transition: all 0.3s;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+#content.active {
+/* width: 100%; */
+width: calc(100% - 250px);
+}

@@ -1,0 +1,148 @@
+<div class="main-wrapper animateIt">
+  <div class="container-fluid">
+    <div class="pageTitle">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <h3>Profile</h3>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12" id="mydiv1">
+        <img src="../assets/images/dasboardPic2.jpg" height="250px" width="100%" id="dashboardPic">
+        <div id="mydiv2">
+          <!-- <h5> Hi {{name}} <span style="display: inline-block;" ng-if="roleIs == 6">Admin</span></h5>-->
+          <!-- <h4 class="text-center"><i class="fa fa-building-o"></i> {{currentAssociationName}}</h4> -->
+        </div>
+      </div>
+    </div>
+
+    <!-----------------------------------  View Profile Details Ends   ----------------------------->
+    <div class="row">
+      <div class="col-sm-12 col-xs-12">
+        <div class="card">
+          <div class="profileInfo">
+            <div class="row">
+              <div class="col-sm-5 col-xs-12">
+                <p>First Name : <strong>{{acfName}} &nbsp; {{aclName}}</strong></p>
+              </div>
+              <div class="col-sm-5 col-xs-12">
+              </div>
+              <div class="col-sm-2 col-xs-12" style="text-align: center">
+                <!-- <p><strong>Profile Picture </strong></p> -->
+              </div>
+              <div class="col-sm-5 col-xs-12" style="padding-top: 10px;">
+                <p>Mobile Number : <strong>{{this.acMobile}}
+                    <i
+                      ng-class="{true: 'ion ion-checkmark-round green', false: 'ion ion-close-round red'}[profile.mobileVerified == true]"></i>
+                  </strong></p>
+                <!-- <p>Mobile Number 2 : <strong>{{profile.mobileNumber2}}</strong></p>
+                                <p>Mobile Number 3 : <strong>{{profile.mobileNumber3}}</strong></p> -->
+              </div>
+              <div class="col-sm-5 col-xs-12" style="padding-top: 10px;">
+                <p>Email ID : <strong>{{this.acEmail}} <i
+                      ng-class="{true: 'ion ion-checkmark-round green', false: 'ion ion-close-round red'}[profile.emailVerified == true]"></i></strong>
+                </p>
+                <!-- <p>Email ID 2 : <strong>{{profile.email2}}</strong></p>
+                                <p>Email ID 3 : <strong>{{profile.email3}}</strong></p> -->
+              </div>
+              <!-- <div class="col-sm-2 col-xs-12 pull-right">                                
+                                <img src="assets/images/newLogo.png" style="max-height:200px; max-width:200px">                                
+                            </div> -->
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-sm-12 col-xs-12">
+                <!-- <button type="button" class="smallBtn" (click)="OpenModal(template,association.asAsnName,association.asCountry,association.asAddress,association.asCity,association.asState,association.asPinCode,association.asPrpType,association.asPrpName,association.asNofBlks,association.asNofUnit,association.amType,association.noofAmenities,association.baBName,association.baIFSC,association.baActNo,association.baActType,association.asAssnID)">
+                                    <i class="fa fa-pencil" title="editassociation"></i>
+                                  </button>    -->
+                <button type="button" class="btn btn-primary pull-right"
+                  (click)="OpenModal(edittemplate,acfName,aclName,acMobile,acEmail,acMobile1,acEmail1,acAccntID)">Edit
+                  Profile</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #edittemplate>
+  <!-- <form class="form-horizontal" name="joins" enctype="multipart/form-data"
+            (ngSubmit)="OnSendButton()" #f="ngForm" novalidate> -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="modal-body">
+        <!-- <button type="button" class="close" aria-label="Close" (click)="modalRef.hide()">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button> -->
+        <div class="row">
+          <div class="col-sm-6 col-xs-12">
+            <div class="form-group" [ngClass]="{'has-error' : firstnameControl.invalid && firstnameControl.touched}">
+              <label>First Name <span class="red">*</span></label>
+              <input type="text" class="form-control" name="acfName" [(ngModel)]="ACFName" #firstnameControl='ngModel'
+                pattern="[a-zA-Z\s]*" required />
+              <p class="alerts" *ngIf="firstnameControl.invalid && firstnameControl.touched">First Name is required</p>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-xs-12">
+            <div class="form-group" [ngClass]="{'has-error' : lastnameControl.invalid && lastnameControl.touched}">
+              <label>Last Name <span class="red">*</span></label>
+              <input type="text" class="form-control" name="aclName" [(ngModel)]="ACLName" #lastnameControl='ngModel'
+                pattern="[a-zA-Z\s]*" required />
+              <p class="alerts" *ngIf="lastnameControl.invalid && lastnameControl.touched">Last Name is required</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6 col-xs-12">
+            <div class="form-group" [ngClass]="{'has-error' : mobileControl.invalid && mobileControl.touched}">
+              <label>Mobile<span class="red">*</span></label>
+              <input type="text" class="form-control" name="acMobile" [(ngModel)]="ACMobile" #mobileControl='ngModel'
+                pattern="[0-9]*" required />
+              <p class="alerts" *ngIf="mobileControl.invalid && mobileControl.touched">Mobile is required</p>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-xs-12">
+            <div class="form-group" [ngClass]="{'has-error' : emailControl.invalid && emailControl.touched}">
+              <label>Email Id<span class="red">*</span></label>
+              <input type="text" class="form-control" name="ACEmail" [(ngModel)]="ACEmail" #emailControl='ngModel'
+                pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required />
+              <p class="alerts" *ngIf="emailControl.invalid && emailControl.touched">Email is required</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 col-xs-12">
+            <div class="form-group" [ngClass]="{'has-error' : altmobileControl.invalid && altmobileControl.touched}">
+              <label>Alternate Mobile</label>
+              <input type="text" class="form-control" name="acMobile1" [(ngModel)]="ACMobile1"
+                #altmobileControl='ngModel' pattern="[0-9]*" />
+              <p class="alerts" *ngIf="altmobileControl.invalid && altmobileControl.touched">AltMobile is required</p>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-xs-12">
+            <div class="form-group" [ngClass]="{'has-error' : altemailControl.invalid && altemailControl.touched}">
+              <label>Alternate Email Id</label>
+              <input type="text" class="form-control" name="acEmail1" [(ngModel)]="ACEmail1" #altemailControl='ngModel'
+                ppattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
+              <p class="alerts" *ngIf="altemailControl.invalid && altemailControl.touched">AltEmail is required</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 col-xs-12">
+            <button type="button" class="btn btn-warning" (click)="updateEditProfile()">Update Profile</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- </form> -->
+</ng-template>

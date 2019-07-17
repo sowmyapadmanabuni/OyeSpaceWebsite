@@ -1,0 +1,60 @@
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+/**/
+@media print {
+body.modalprinter * {
+    visibility: hidden;
+}
+
+body.modalprinter .modal-dialog.focused {
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    left: 0;
+    top: 0;
+}
+
+body.modalprinter .modal-dialog.focused .modal-content {
+    border-width: 0;
+}
+
+body.modalprinter .modal-dialog.focused .modal-content .modal-header .modal-title,
+body.modalprinter .modal-dialog.focused .modal-content .modal-body,
+body.modalprinter .modal-dialog.focused .modal-content .modal-body * {
+
+    visibility: visible;
+}
+
+
+
+body.modalprinter .modal-dialog.focused .modal-content .modal-header,
+body.modalprinter .modal-dialog.focused .modal-content .modal-body {
+    padding: 0;
+}
+
+body.modalprinter .modal-dialog.focused .modal-content .modal-header .modal-title {
+    margin-bottom: 20px;
+}
+}
+

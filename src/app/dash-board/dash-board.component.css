@@ -1,0 +1,85 @@
+#row1 {
+    color:#707070;
+    padding:10px;
+    font-family: JOSEFINE SANS;
+    font-size: 18px;
+}
+
+#loadAssn{
+    border-radius: 3px; 
+    border: 1px solid #58666e;
+}
+
+#dashboardPic{
+    border-radius: 5px;
+}
+
+.pageTitle{width: 100%; 
+    height: auto;
+    padding:8px; 
+    background: whitesmoke; 
+    border-radius: 5px;
+    box-shadow: 1px 2px 15px #e5e5e5;    
+    -webkit-box-shadow: 1px 2px 15px #e5e5e5; 
+    }
+
+    .pageTitle p{font-size: 16px; 
+        font-weight: 500; 
+        color: #b33951; 
+        margin: 0; 
+        letter-spacing: 2px; 
+    }  
+
+#ticketsrow1, #ticketsrow2{
+    color: #58666e;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-family: JOSEFINE SANS;
+    font-size:12px;
+    margin:20px;
+    height:100px;
+    padding-left: 60px;
+} 
+
+#tablehead1{
+    color:#b33951;
+    font-family: Poppins;
+}
+
+#mydiv1{
+    position:relative;
+}
+
+#mydiv2{
+    position:absolute;
+    color:white;
+    
+    background: rgb(0,0,0);
+   /* background: rgba(202, 157, 157, 0.8);*/
+    background: rgba(0, 0, 0, 0.6);
+    
+    bottom: 0;
+    width: 97.2%;
+    padding: 20px;
+    height:100%;
+    font-family: Poppins;
+}
+
+.bh2{margin-top:0; margin-bottom:5px;}
+.text-smooth {
+    color: #ff6c9d;
+}
+
+.text-primary {
+    color: #5c90d2;
+}
+
+.text-success {
+    color: #46c37b;
+}
+
+.text-amethyst {
+    color: #a48ad4;
+}
+    
+    

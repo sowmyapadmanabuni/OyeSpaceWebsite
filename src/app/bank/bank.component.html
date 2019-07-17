@@ -1,0 +1,92 @@
+<table class="table table-striped">
+    <thead>
+        <tr id="label16" class="col-sm-12">
+            <td>Bankname<span style="color:red">*</span></td>
+            <td>IFSC<span class="red">*</span></td>
+            <td>Account number<span class="red">*</span></td>
+            <td>Account type<span class="red">*</span></td>
+            <td>Action<span class="red">*</span></td>
+        </tr>
+    </thead>
+
+    <tbody>
+            <tr *ngFor="let bank of bankites; let i = index">
+                <td><input type="text" name="babname" id="babname" autocomplete='babname' placeholder="Bank Name"
+                        [(ngModel)]="bank['BABName']" #newBankNcontrol="ngModel" class="form-control"
+                        style="text-transform: uppercase; font-family: Poppins; font-size: 13px;" pattern="[A-Za-z\s]+" />
+                    <p class="alerts" *ngIf="newBankNcontrol.invalid && newBankNcontrol.touched"> Bank
+                        name is invalid</p>
+                </td>
+            
+                <td><input type="text" name="baifsc" autocomplete='baifsc' id="baifsc" placeholder="IFSC" [(ngModel)]="bank['BAIFSC']"
+                        class="form-control" #newIFSCNcontrol="ngModel"
+                        style="text-transform: uppercase; font-family: Poppins; font-size: 13px;" pattern="^[^\s]{4}\d{7}$"
+                        maxlength="11" />
+                    <small style="color:grey; font-size:12px;">Ex: PAAA1111111</small>
+                    <p class="alerts" *ngIf="newIFSCNcontrol.invalid && newIFSCNcontrol.touched"> IFSC
+                        is invalid</p>
+                </td>
+
+                <td><input type="text" name="accountnumber" autocomplete='accountnumber' placeholder="Account Number"
+                        [(ngModel)]="bank['BAActNo']" #newAccountNcontrol="ngModel" class="form-control" maxlength="20"
+                        style="text-transform: uppercase; font-family: Poppins; font-size: 13px;" pattern="[0-9]*" />
+                
+                    <p class="alerts" *ngIf="newAccountNcontrol.invalid && newAccountNcontrol.touched">
+                        Account Number is invalid</p>
+                </td>
+
+                <td><select class="form-control" name="accounttype" [(ngModel)]="bank['BAActType']" #newaccountTcontrol="ngModel"
+                        style="font-family: Poppins">
+                        <option disabled="true" [value]="" style="color:#b33951">Select
+                            Account Type</option>
+                        <option *ngFor="let actype of accountTypes" [value]="actype.name">{{actype.name}}
+                        </option>
+                    </select>
+                    <p class="alerts" *ngIf="newaccountTcontrol.invalid && newaccountTcontrol.touched">
+                        Please Select accountype</p>
+                </td>
+                <td>
+                    <p><button class="fa fa-trash fa-1x" (click)="deleteBank(bank['BAActNo'])"></button></p>
+                </td>
+
+            </tr>
+
+        <tr>
+            <td class="form-group">
+                <input type="text" name="BABName" autocomplete='BABName' id="BABName" placeholder="Bank Name"
+                    [(ngModel)]="newBank.BABName" #BankNcontrol="ngModel" class="form-control"
+                    style="text-transform: uppercase; font-family: Poppins; font-size: 13px;" pattern="[A-Za-z\s]+" />
+                <p class="alerts" *ngIf="BankNcontrol.invalid && BankNcontrol.touched"> Bank name is invalid</p>
+            </td>
+            <td><input type="text" name="BAIFSC" autocomplete='BAIFSC' id="BAIFSC" placeholder="IFSC"
+                    [(ngModel)]="newBank.BAIFSC" #IFSCNcontrol="ngModel" class="form-control"
+                    style="text-transform: uppercase; font-family: Poppins; font-size: 13px;" pattern="^[^\s]{4}\d{7}$"
+                    maxlength="11" />
+                <small style="color:grey; font-size:12px;">Ex: PAAA1111111</small>
+                <p class="alerts" *ngIf="IFSCNcontrol.invalid && IFSCNcontrol.touched"> IFSC is invalid</p>
+            </td>
+            <td><input type="text" name="BAActNo" autocomplete='BAActNo' placeholder="Account Number"
+                    [(ngModel)]="newBank.BAActNo" #AccountNcontrol="ngModel" class="form-control" maxlength="20"
+                    style="text-transform: uppercase; font-family: Poppins; font-size: 13px;" pattern="[0-9]*" />
+
+                <p class="alerts" *ngIf="AccountNcontrol.invalid && AccountNcontrol.touched"> Account Number is invalid
+                </p>
+            </td>
+            <td><select class="form-control" name="BAActType" id="BAActType" [(ngModel)]="newBank.BAActType"
+                    #accountTcontrol="ngModel" style="font-family: Poppins">
+                    <option disabled="true" [value]="" style="color:#b33951">Select
+                        Account Type</option>
+                    <option *ngFor="let accountType of accountTypes" [value]="accountType.name">{{accountType.name}}
+                    </option>
+                </select>
+                <p class="alerts" *ngIf="accountTcontrol.invalid && accountTcontrol.touched"> Please Select accountype
+                </p>
+            </td>
+            <td>
+                <p><button class="fa fa-plus-square fa-1x" (click)="addBank()"></button>
+                </p>
+            </td>
+        </tr>
+
+    </tbody>
+</table>

@@ -1,0 +1,102 @@
+
+    <!---- ---->
+    <div class="wrapper">
+
+        <nav id="sidebar">
+            <div>
+                <img src="../assets/images/newLogo.png" style="margin-top: 20px;margin-left:50px" height="60px"
+                    width="120px">
+            </div>
+        <br>
+        
+            <ul class="nav flex-column" *ngIf='dashboardservice.mrmRoleID == 1'>
+                <li class="nav-item">
+                    <a routerLink="dashboard" class="nav-item nav-link active" routerLinkaActive="active"
+                        id="dashboard"><span class="fa fa-tasks"></span> Dashboard</a>
+                </li>
+                <li class="dropdown-divider"></li>
+                <li class="nav-item dropdown-btn"><a class="nav-item nav-link" id="association">Association
+                        Management</a>
+                    <ul class="dropdown-container" id="dropdowncontainerId">
+                        <li class="nav-item" style="margin-left:40px"><a routerLink="association" id="unit"><span
+                                    class="fa fa-home"></span>Association</a></li>
+                        <li class="nav-item" style="margin-left:40px"><a routerLink="viewBlocks" id="block"><span
+                                    class="fa fa-home"></span>Blocks</a></li>
+                        <li class="nav-item" style="margin-left:40px"><a routerLink="viewunit" id="unit"><span
+                                    class="fa fa-home"></span>Units</a></li>
+                    </ul>
+                </li>
+                <!---->
+                <li class="dropdown-divider"></li>
+                <li class="nav-item dropdown-btn"><a class="nav-item nav-link active" id="association">Expense
+                        Management</a>
+                    <ul class="dropdown-container">
+                        <li class="nav-item" style="margin-left:40px"><a routerLink="viewexpense" id="block"><span
+                                    class="fa fa-home"></span>Expense</a></li>
+                        <li class="nav-item" style="margin-left:40px"><a routerLink="viewinvoice" id="unit"><span
+                                    class="fa fa-home"></span>Invoice</a></li>
+                        <li class="nav-item" style="margin-left:40px"><a routerLink="viewreceipt" id="unit"><span
+                                    class="fa fa-copy"></span>Recipts</a></li>
+                    </ul>
+                </li>
+                <!---->
+                <li class="dropdown-divider"></li>
+                <li class="nav-item">
+                    <a routerLink="report" class="nav-item nav-link" id="unit"><span class="fa fa-copy"></span>
+                        Reports</a>
+                </li>
+            </ul>
+            <ul class="nav flex-column" *ngIf='dashboardservice.mrmRoleID == 2'>
+                <li class="nav-item">
+                    <a routerLink="association" class="nav-item nav-link" id="association"><span
+                            class="fa fa-th-large"></span>
+                        Association Management</a>
+                </li>
+            </ul>
+            <ul class="nav flex-column" *ngIf='dashboardservice.mrmRoleID == 3'>
+                <li class="nav-item">
+                    <a routerLink="association" class="nav-item nav-link" id="association"><span
+                            class="fa fa-th-large"></span>
+                        Association Management</a>
+                </li>
+            </ul>
+            <ul class="nav flex-column" *ngIf='dashboardservice.memberdoesnotexist'>
+                <li class="nav-item">
+                    <a (click)='gotoViewassociation()' class="nav-item nav-link" id="association"><span class="fa fa-th-large"></span>
+                        Association Management</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div id="content">
+            <div>
+                <span id="sidebarCollapse"
+                    style="position: absolute;margin-top: 2px;margin-left: 4px;color: white;cursor: pointer;"><i
+                        class="fa fa-bars"></i></span>
+                <div
+                    style="text-align:center;font-family: Poppins;background-color: black; color: white;padding:1px; font-size:15px;">
+                    <p>
+                        OYE<span style="color:orange;">SPACE</span>. You Live It. We Manage It!
+                    </p>
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
+                            style=" background-color: black; border-color: black; margin: -4% 0% 0% 86%;">User
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li style="color:orange;"><a routerLink="editprofile"> <i class="si si-user"></i> Profile
+                                </a></li>
+                            <li style="color:orange;" (click)='gotoLoginPage()'><a><i class="si si-logout"></i> Log
+                                    Out</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- <div class="top-header" data-spy="affix" data-offset-top="10"> -->
+
+                <!-- </div> -->
+            </div>
+            <router-outlet></router-outlet>
+        </div>
+
+    </div>
+
+

@@ -1,0 +1,107 @@
+@charset "utf-8";
+/* CSS Document */
+
+@media screen and (max-width:768px) {
+.logo img {
+		width:80px;
+
+	}
+	
+.logo {
+		/*position:static;*/
+		padding: 0px 15px;
+
+	}
+	
+.navigation {
+		background-color:#f79321;
+		
+	}
+	
+.why-care-of-homes {
+	padding-top:50px;
+	padding-bottom:50px;
+	min-height:100%;
+}
+	
+.who-we-are {
+	padding-top:30px;
+	padding-bottom:30px;
+	background-color:#f79321;
+	color:#FFF;
+	min-height:auto;
+	
+}
+	
+.vertical-align {
+	position:static;
+	min-height:auto;
+	height:100%;
+}
+
+.align-middle {
+  	position:static;
+  	top: 0%;
+  	transform: translatey(0%);
+}
+
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+	margin-top:15px;
+}
+
+
+}
+
+
+
+@media screen and (max-width: 768px) {
+	
+	body {
+                  position: relative;
+      }
+          .side-collapse-container{
+              width:100%;
+              position:relative;
+              left:0;
+              transition:left .4s;
+          }
+          .side-collapse-container.out{
+              left:200px;
+          }
+          .side-collapse {
+              top:50px;
+              bottom:0;
+              left:0;
+              width:200px;
+              position:fixed;
+              overflow:hidden;
+              transition:width .4s;
+          }
+          .side-collapse.in {
+              width:0;
+          }
+		  
+		  .top-pad {
+	 margin-top:40px;
+ }
+ 
+      }
+	  
+@media screen and (max-width:640px) {
+	
+/*.navbar-brand {
+	display:none;
+	}
+	
+.navbar-brand-2 {
+	display:block;
+	padding:15px;
+	color:#FFF;
+}
+
+.navbar-brand-2:hover {
+	color:#FFF;
+	text-decoration:none;
+}*/
+	
+}

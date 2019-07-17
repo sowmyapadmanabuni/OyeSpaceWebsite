@@ -1,0 +1,107 @@
+#row1, #row3 {
+    color:#707070;
+    padding:10px;
+    font-family: Poppins;
+    font-size: 18px;
+    font-family: JOSEFINE SANS
+}
+
+
+#addUnit_btn{
+    background-color: #b33951;
+    border-radius: 5px;
+    border:1px solid #b33951;
+    font-family: Poppins;
+}
+
+#search_unit{
+    font-family: Poppins;
+     border-radius: 3px; 
+     border: 1px solid grey;
+     color:#707070;
+     border-top: 2px solid white;
+     border-left: 2px solid white;
+     border-right: 2px solid white;
+}
+
+#selectBlock{
+    font-family: Poppins;
+     border-radius: 3px; 
+     border: 1px solid grey;
+     color:#707070;
+     
+}
+
+.alerts{
+    color:red;
+    font-size: 14px;
+    font-family: Poppins;
+}   
+
+#unitData_table{
+    color:#b33951;
+    font-family: Poppins; 
+    font-size:18px; 
+   
+}
+
+#currAssn, #currAssn2{
+    color:#707070;
+    text-transform:uppercase;
+    font-size: 15px;
+}
+
+#select_above{
+    font-weight:bold;
+    font-family: Poppins;
+    font-size: 25px;
+    color: #707070;
+}
+
+.red{
+    color:red;
+}
+
+#label1, #label2, #label3, #label4, #label5, #label6, #label7, #label8, 
+#label9, #label10, #label11, #label12, #label13, #label14, #label15, 
+#label16, #label17, #label18, #label19, #label20, #label21, #label22,
+#label23, #label24, #label25, #label26 {
+          font-family: Poppins;
+          color:black;
+        }
+
+ #input1, #input2, #input3, #input4, #input5, #input6,#input7, #input8,
+ #input9, #input10, #input11, #input12, #input13, #input14, #input15, 
+ #input16, #input17, #input18, #input19{
+          font-family: Poppins;
+        }      
+        
+#btn_createUnit{
+        background-color: #b33951;
+        border-radius: 3px;
+        border:1px solid #b33951;
+        font-family: Poppins;
+        margin:10px;
+       } 
+        
+#btn_rest{
+        background-color: whitesmoke;
+        border-radius: 3px;
+        border:1px solid #b33951;
+        color: #b33951;
+        font-family: Poppins;
+        margin:10px;
+       }
+       
+#viewBtn{
+    background-color: grey;
+    border:2px solid grey;
+    border-radius: 4px;
+} 
+
+#editBtn{
+    background-color: grey;
+    border:2px solid grey;
+    border-radius: 4px;
+}           
+        

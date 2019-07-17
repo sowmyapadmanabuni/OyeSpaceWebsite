@@ -1,0 +1,285 @@
+<div class="main-wrapper animateIt">
+  <div class="container-fluid">
+    <div class="pageTitle" style="padding: 10px;">
+      <div class="row">
+        <div class="col-sm-4 col-xs-12">
+          <h3 style="margin-top: 3px; margin-bottom: 0;" class="ng-binding">Create Unit for {{currentAssociationName}}
+          </h3>
+        </div>
+        <div class="col-sm-3 col-xs-12 pull-left">
+          <div class="form-group">
+            <select class="ui dropdown search methodDropdown" name="blockname" [(ngModel)]="blBlockID"
+              (change)="getAllUnitDetailsByBlockID(blBlockID)" required #blocksDetailControl='ngModel'>
+              <option disabled="true" selected="true" value="">Select Block Name</option>
+              <option *ngFor='let blck of allBlocksLists' [value]="blck.blBlockID">
+                {{blck.blBlkName}}
+              </option>
+            </select>
+            <p class="alerts" *ngIf="blocksDetailControl.invalid && blocksDetailControl.touched"> Please select
+              BlockName
+            </p>
+          </div>
+        </div>
+
+        <div class="col-sm-3 col-xs-12">
+
+        </div>
+
+        <div class="col-sm-2 col-xs-12 ">
+
+        </div>
+
+      </div>
+    </div>
+    <div class="card col-xs-12" *ngIf='showCreateUnitemplate'>
+      
+        <!---->
+          <form name="addUnits" #createunitForm='ngForm' (ngSubmit)='createUnit()'>
+            <fieldset class="scheduler-border">
+              <legend class="scheduler-border headingOrange">Unit Information</legend>
+              <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                  <div class="form-group">
+                    <label id=label1>Unit No / Flat No <span class="red">*</span></label>
+                    <input type="text" name="unitno" id="unitno" style="text-transform: uppercase" autocomplete="unitno"
+                      [(ngModel)]="unitno" #unitnoControl="ngModel" class="form-control" placeholder="Unit no/ Flat no"
+                      pattern="[a-zA-Z0-9]*" required />
+                    <p class="alerts" *ngIf="unitnoControl.invalid && unitnoControl.touched"> Valid unit no is required
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3 col-xs-12">
+                  <div class="form-group">
+                    <label id=label2>Unit Type <span class="red">*</span></label>
+                    <select class="form-control" name="unitType" id="unitType" [(ngModel)]="unitType"
+                      #unitTypeControl="ngModel" required>
+                      <option value="" style="color:#b33951">Select Unit Type</option>
+                      <option *ngFor="let unitTp of unitTypes" [value]="unitTp['name']">{{unitTp['name']}}</option>
+                    </select>
+                    <p class="alerts" *ngIf="unitTypeControl.invalid && unitTypeControl.touched"> Please Select unit type</p>
+                  </div>
+                </div>
+                <div class="col-sm-3 col-xs-12">
+                    <div class="form-group">
+                      <label id=label5>Calculation Type <span class="red">*</span></label>
+                      <select class="form-control" name="calculationtype" id="calculationtype"
+                        [(ngModel)]="calculationtype" #calculationtypeControl="ngModel" required>
+                        <option disabled="true" selected="true" value="" style="color:#b33951">Select Calculation Types
+                        </option>
+                        <option *ngFor="let calculationType of calculationTypes" [value]="calculationType.name">
+                          {{calculationType.displayName}}</option>
+                      </select>
+                      <p class="alerts" *ngIf="calculationtypeControl.invalid && calculationtypeControl.touched"> Please select calculation type</p>
+                    </div>
+                  </div>
+                <div class="col-sm-3 col-xs-12">
+                  <div class="form-group">
+                    <label id=label3>Unit Dimension <span class="red">*</span></label>
+                    <input type="text" name="unitdimension" id="unitdimension" [(ngModel)]="unitdimension"
+                      #unitdimensionControl="ngModel" class="form-control" placeholder="Unit dimension"
+                      pattern="[0-9]*" required/>
+                      <p class="alerts" *ngIf="unitdimensionControl.invalid && unitdimensionControl.touched"> Valid Unit dimension is required</p>
+                  </div>
+                </div>
+                <div class="col-sm-3 col-xs-12">
+                  <div class="form-group">
+                    <label id=label4>Unit Rate <span class="red">*</span></label>
+                    <input type="text" name="unitrate" id="unitrate" [(ngModel)]="unitrate" class="form-control"
+                      placeholder="Unit rate" #unitrateControl="ngModel" pattern="[0-9]+(\.[0-9][0-9]?)?" required />
+                    <p class="alerts" *ngIf="unitrateControl.invalid && unitrateControl.touched"> Valid unit rate is
+                      required</p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4 col-xs-12">
+                  <div class="form-group">
+                    <label id=label6>Occupancy & Ownership Status <span class="red">*</span></label>
+                    <select class="form-control" name="occupency" id="occupency" [(ngModel)]="occupency"
+                      (change)="tenantOwnerdiv(occupency)" #occupencyControl="ngModel" required>
+                      <option disabled="true" selected="true" value="" style="color:#b33951">Select occupency &
+                        ownership status
+                      </option>
+                      <option *ngFor="let occupency of occupencys" [value]="occupency.name">{{occupency.name}}</option>
+                    </select>
+                    <p class="alerts" *ngIf="occupencyControl.invalid && occupencyControl.touched"> Please Select occupency</p>
+                  </div>
+                </div>
+                <div class="col-sm-4 col-xs-12" *ngIf="occupency == 'Sold Owner Occupied'">
+                  <div class="form-group">
+                    <label>Unit Sold Date <span class="red">*</span></label>
+                  </div>
+                </div>
+                <div class="col-sm-4 col-xs-12" *ngIf="occupency == 'Sold Tenant Occupied'">
+                  <div class="form-group">
+                    <label>Unit Occupied Date <span class="red">*</span></label>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset class="scheduler-border" *ngIf="ownerDetails">
+              <legend class="scheduler-border headingOrange">Unit Owner Information</legend>
+              <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                  <div class="form-group">
+                    <label id=label7>Owner First Name <span class="red">*</span></label>
+                    <input type="text" name="ownerFirtname" id="ownerFirtname" [(ngModel)]="ownerFirtname"
+                      #ownerFirtnameControl="ngModel" class="form-control" placeholder="Owner firstname"
+                      pattern="[a-zA-Z]*" required/>
+                      <p class="alerts" *ngIf="ownerFirtnameControl.invalid && ownerFirtnameControl.touched"> Valid owner firstname is required</p>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                  <div class="form-group">
+                    <label id=label8>Owner Last name <span class="red">*</span></label>
+                    <input type="text" name="ownerLastname" id="ownerLastname" [(ngModel)]="ownerLastname"
+                      #ownerLastnameControl="ngModel" class="form-control" placeholder="Owner lastname"
+                      pattern="[a-zA-Z]*" required/>
+                      <p class="alerts" *ngIf="ownerLastnameControl.invalid && ownerLastnameControl.touched"> Valid owner lastname is required</p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                  <div class="form-group">
+                    <label id=label9>Owner Mobile Number <span class="red">*</span></label>
+                    <input type="text" name="ownerMobnumber" id="ownerMobnumber" [(ngModel)]="ownerMobnumber"
+                      #ownerMobnumberControl="ngModel" class="form-control" placeholder="Owner mobile number"
+                      minlength=10 maxlength=10 pattern="[0-9]*" required (keypress)=_keyPress($event)/>
+                      <p class="alerts" id="phonenum" type="tel" pattern="[0-9]+" *ngIf="ownerMobnumberControl.invalid && ownerMobnumberControl.touched"> Valid 10 digit mobile number is required</p>                  
+                  </div>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                  <div class="form-group">
+                    <label id=label10>Owner Email-Id<span class="red">*</span></label>
+                    <input type="text" name="ownerEmail" id="ownerEmail" [(ngModel)]="ownerEmail"
+                      #ownerEmailControl="ngModel" class="form-control" placeholder="Owner email-id"
+                      pattern="[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*" required/>
+                      <p class="alerts" *ngIf="ownerEmailControl.invalid && ownerEmailControl.touched"> valid email-id is required</p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                  <div class="form-group">
+                    <label id=label11>Owner Altername Mobile Number</label>
+                    <input type="text" name="ownerAltnumber" id="ownerAltnumber" [(ngModel)]="ownerAltnumber"
+                      #ownerAltnumberontrol="ngModel" class="form-control" placeholder="Owner altername mobile no"
+                      minlength=10 maxlength=10 pattern="[0-9]*" required (keypress)=_keyPress($event)/>
+                      <p class="alerts" *ngIf="ownerAltnumberontrol.invalid && ownerAltnumberontrol.touched">Mobile number is invalid</p>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                  <div class="form-group">
+                    <label id=label12>Owner Altername Email-Id</label>
+                    <input type="text" name="ownerAltemail" id="ownerAltemail" [(ngModel)]="ownerAltemail"
+                      class="form-control" #ownerAltemailControl="ngModel" placeholder="Owner alternate email-id"
+                      pattern="[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*" required/>
+                      <p class="alerts" *ngIf="ownerAltemailControl.invalid && ownerAltemailControl.touched">Email-id is invalid</p>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset class="scheduler-border" *ngIf="tenantDetails">
+              <legend class="scheduler-border headingOrange">Unit Tenant Information</legend>
+              <div>
+                <div class="row">
+                  <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                      <label id=label21>Tenant First Name <span class="red">*</span></label>
+                      <input type="text" name="tenantFirtname" id="tenantFirtname" [(ngModel)]="tenantFirtname"
+                        #tenantFirtnameControl="ngModel" class="form-control" placeholder="Tenant firstname"
+                        pattern="[a-zA-Z]*" required/>
+                        <p class="alerts" *ngIf="tenantFirtnameControl.invalid && tenantFirtnameControl.touched"> Valid firstname is required</p>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                      <label id=label22>Tenant Last name <span class="red">*</span></label>
+                      <input type="text" name="tenantLastname" id="tenantLastname" [(ngModel)]="tenantLastname"
+                        #tenantLastnameControl="ngModel" class="form-control" placeholder="Tenant lastname"
+                        pattern="[a-zA-Z]*" required/>
+                        <p class="alerts" *ngIf="tenantLastnameControl.invalid && tenantLastnameControl.touched"> Valid lastname is required</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                      <label id=label23>Tenant Mobile Number <span class="red">*</span></label>
+                      <input type="text" name="tenantMobnumber" id="tenantMobnumber" [(ngModel)]="tenantMobnumber"
+                        #tenantMobnumberControl="ngModel" class="form-control" placeholder="Tenant mobile number"
+                        minlength=10 maxlength=10 pattern="[0-9]*" required (keypress)=_keyPress($event)/>
+                        <p class="alerts" *ngIf="tenantMobnumberControl.invalid && tenantMobnumberControl.touched"> Valid mobile number is required</p>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                      <label id=label24>Tenant Email-Id<span class="red">*</span></label>
+                      <input type="text" name="tenantEmail" id="tenantEmail" [(ngModel)]="tenantEmail"
+                        #tenantEmailControl="ngModel" class="form-control" placeholder="Tenant email-id"
+                        pattern="[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*" required/>
+                        <p class="alerts" *ngIf="tenantEmailControl.invalid && tenantEmailControl.touched"> Valid email-id is required</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset class="scheduler-border">
+              <legend class="scheduler-border headingOrange">Unit Vehicle Information</legend>
+              <table class="table">
+                <tr id="label16">
+                  <td>Parking Lot Number</td>
+                  <td>Vehicle Number</td>
+                  <!-- <td>Action</td> -->
+                </tr>
+                <!-- <tr *ngFor="let parking of parkings; let i = index">
+                  <td>
+                    <input type="text" name="parkingNo" id="parkingNo" [(ngModel)]="parkingNo"
+                      #parkingNoControl="ngModel" class="form-control" placeholder="Parking Lot number"
+                      style="font-family: Poppins" pattern="[A-Za-z0-9]*" />
+                  </td> &nbsp; &nbsp;
+                  <td>
+                    <input type="text" name="vehicleNo" id="vehicleNo" [(ngModel)]="vehicleNo"
+                      #vehicleNoControl="ngModel" class="form-control" placeholder="Vehicle number"
+                      style="font-family: Poppins; text-transform: uppercase" pattern="[A-Z0-9]*" />
+                  </td>
+                  <td>
+                  </td>
+                </tr> -->
+                <tr>
+                  <td>
+                    <input type="text" name="newParkingNo" id="newParkingNo" [(ngModel)]="newParkingNo"
+                      #parkingNoControl="ngModel" class="form-control" placeholder="Parking Lot number"
+                      style="font-family: Poppins" pattern="A-Za-z0-9]*" />
+                  </td> &nbsp;
+                  <td>
+                    <input type="text" name="newVehicleNo" id="newVehicleNo" [(ngModel)]="newVehicleNo"
+                      #vehicleNoControl="ngModel" class="form-control" placeholder="Vehicle number"
+                      style="font-family: Poppins; text-transform: uppercase" pattern="[A-Z0-9]*" />
+                  </td>
+                  <td>
+                    <!-- <p><span class="fa fa-plus-square fa-1x" (click)="addParking()"></span></p> -->
+                  </td>
+                </tr>
+              </table>
+            </fieldset>
+            <div class="from-group">
+              <div class="form-group pull-right">
+                <input type="submit" class="mdButton1" value="Add Unit"/> &nbsp;
+                <button type="reset" class="mdButton1">Reset</button>
+              </div>
+            </div>
+          </form>
+        <!---->
+      
+    </div>
+    <div class="card" *ngIf="blBlockID == ''">
+      <h1 style="text-align :center">Please select Blocks to continue</h1>
+    </div>
+
+
+  </div>
+</div>

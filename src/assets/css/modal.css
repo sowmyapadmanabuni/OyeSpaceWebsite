@@ -1,0 +1,11 @@
+.modal-header {
+	min-height: 16px;
+	padding: 24px;
+	border-bottom: none;
+}
+
+.modal-title {
+	font-weight: 600;
+	font-size: 21px; color: #f79321 !important;letter-spacing: 1px;
+}
+

@@ -1,0 +1,65 @@
+<div class="main-wrapper animateIt">
+  <div class="container-fluid">
+    <div class="pageTitle">
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-6">
+          <h3 style="margin-top: 8px;">Reports for {{currentAssociationName}} Association</h3>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-4">
+          <div class="form-group" [ngClass]="{'has-error' : reportDetailControl.invalid && reportDetailControl.touched}">
+            <select class="ui dropdown search methodDropdown" name="reportID" [(ngModel)]="reportID"
+              (change)="getPaidUnpaidDetail(reportID)" required #reportDetailControl='ngModel'>
+              <option disabled="true" value="">Select values</option>
+              <option *ngFor='let blck of frequencys' [value]="blck.displayName">
+                {{blck.displayName}}
+              </option>
+            </select>
+            <p class="alerts" *ngIf="reportDetailControl.invalid && reportDetailControl.touched"> Please select Values
+            </p>
+          </div>
+        </div>
+        <div class="col-md-2 col-sm-12 col-xs-12">
+          <a routerLink="home/viewBlocks">
+            <button type="button" class="btn btn-danger pull-right"><i class="fa fa-times"></i> Cancel</button>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="reportID" class="col-xs-12">
+      <table class="table table-striped">
+        <thead>
+          <tr style="color:#e59400;">
+            <td>Unit ID</td>
+            <td>Payment Description</td>
+            <td>Payment Date</td>
+            <td>Amount Due</td>
+            <td>Amount Paid</td>
+            
+            <!--
+                 <td>Occupancy status </td>
+                 <td>OwnerShip Status </td>
+                 -->
+            <td colspan="2">Action</td>
+          </tr>
+          </thead>
+        <tbody>
+          <tr *ngFor="let item of displaypaymentdetails" style="font-family: Poppins;">
+            
+            <td>{{item.unUnitID}}</td>
+            <td>{{item.pyDesc}}</td>
+            <td>{{item.pyDate}}</td>
+            <td>{{item.pyAmtDue}}</td>
+            <td>{{item.pyAmtPaid}}</td>
+            <!--
+                 <td>{{unit.unOcStat}} </td>
+                 <td>{{unit.unOwnStat}} </td>
+                  -->
+            <td>
+              <button type="button" class="smallBtn" data-toggle="modal" data-target="#viewUnit1"><i class="fa fa-eye"></i></button> | <button id="editBtn" class="smallBtn"
+                data-toggle="modal" data-target="#editAssociation"><i
+                  class="fa fa-pencil"></i></button>
+            </td>
+          </tr>
+        </tbody>
+        </table>

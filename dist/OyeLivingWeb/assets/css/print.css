@@ -1,0 +1,28 @@
+
+@media print /*--This is for Print--*/
+{
+    #printInvoiceButton
+    {
+        display: none;
+    }
+
+    #makePaymentButton
+    {
+        display: none;
+    }
+    
+}
+@media screen /*--This is for Print Preview Screen--*/
+{
+	#printInvoiceButton
+    {
+        display: none;
+    }
+
+    #makePaymentButton
+    {
+        display: none;
+    }
+
+    
+  }

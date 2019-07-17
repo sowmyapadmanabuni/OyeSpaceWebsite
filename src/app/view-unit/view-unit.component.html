@@ -1,0 +1,124 @@
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <p>
+        <span id="currAssn">CREATE UNIT FOR {{currentAssociationName}} ASSOCIATION</span>
+      </p>
+    </div>
+    <div class="col-3">
+      <div class="form-group" [ngClass]="{'has-error' : blocksDetailControl.invalid && blocksDetailControl.touched}">
+        <select class="ui dropdown search methodDropdown" name="blockname" [(ngModel)]="blBlockID"
+          (change)="getAllUnitDetailsByBlockID(blBlockID)" required #blocksDetailControl='ngModel'>
+          <option disabled="true" selected="true" value="">Select Block Name</option>
+          <option *ngFor='let blck of allBlocksLists' [value]="blck.blBlockID">
+            {{blck.blBlkName}}
+          </option>
+        </select>
+        <p class="alerts" *ngIf="blocksDetailControl.invalid && blocksDetailControl.touched"> Please select BlockName
+        </p>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="form-group">
+        <input type="text" name="searchText" [(ngModel)]="searchText" class="form-control"
+          placeholder="Start Typing, this is dynamic search" style="width: 90%;" />
+      </div>
+    </div>
+    <div class="col-2">
+      <button class="btn btn-primary" style="margin:12px" (click)='gotoAddunit()'>Add Unit</button>
+    </div>
+  </div>
+</div>
+<!--DIV-->
+<div *ngIf="blBlockID == ''" class="card">
+  <h1 style="text-align :center">Select Block to Continue</h1>
+</div>
+<!--DIV-->
+<div *ngIf="blBlockID" class="col-xs-12">
+  <table class="table table-striped">
+    <thead>
+      <tr style="color:#e59400;">
+        <td>S.No.</td>
+        <td>Unit No</td>
+        <td>Unit Type</td>
+        <td>Unit Dimension</td>
+        <td>Name</td>
+        <td>Email-Id</td>
+        <!--
+             <td>Occupancy status </td>
+             <td>OwnerShip Status </td>
+             -->
+        <td colspan="2">Action</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of allUnitBYBlockID | filter : searchText;let i=index" style="font-family: Poppins;">
+        <td>{{i+1}}</td>
+        <td>{{item.unUniName}}</td>
+        <td>{{item.unUniType}}</td>
+        <td>{{item.unDimens}} SqFt</td>
+        <td>{{(item.owner.length > 0 ? item.owner[0].uofName : '' )}}</td>
+        <td>{{(item.owner.length > 0 ? item.owner[0].uoEmail : '' )}}</td>
+        <!--
+             <td>{{unit.unOcStat}} </td>
+             <td>{{unit.unOwnStat}} </td>
+              -->
+        <td>
+          <button type="button" class="smallBtn" data-toggle="modal" data-target="#viewUnit1"
+            (click)="viewUnit(item)"><i class="fa fa-eye"></i></button> | <button id="editBtn" class="smallBtn"
+            data-toggle="modal" data-target="#editAssociation" (click)="editUnit()"><i
+              class="fa fa-pencil"></i></button>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>
+<!--DIV-->
+<div class="modal fade viewPopup" id="viewUnit1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header" style="background-color: whitesmoke;">
+               
+               
+                <h4 class="modal-title" id="myModalLabel" style="color:#b33951; font-family: Poppins;"><u>View Unit</u></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+
+            <div class="modal-body" style="font-family: Poppins;">
+                <div class="row" style="border:2px solid #b33951; padding:5px;">
+                    <div class="col-sm-12"> 
+                        <h5 class="text-center">Association Name : <strong>{{currentAssociationName}}</strong></h5> 
+                        <br>                          
+                        <h5 style="color:#b33951">Unit Information</h5>
+                        <br>
+                    </div>
+                    <div class="col-sm-4">
+                        <p>Unit No : <span>{{viewUnitRow.unitNo}}</span></p>
+                    </div>
+                    <div class="col-sm-4">
+                        <p>Unit Type : <span>{{viewUnitRow.unitType}}</span></p>
+                    </div>
+                    <div class="col-sm-4">
+                        <p>Unit Dimension : <span>{{viewUnitRow.unitDimen}}</span></p>
+                    </div>
+
+                    <div class="col-sm-12">
+                         <hr>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <p>Unit Rate : <span>{{viewUnitRow.rate}}</span></p>
+                    </div>
+                    <div class="col-sm-4">
+                        <p>Calculation Type : <span>{{viewUnitRow.calculationType}}</span></p><!---->
+                    </div>
+                    <div class="col-sm-4">
+                        <p>Ownership Status : <span>{{viewUnitRow.ownershipStatus}}</span></p>
+                    </div>
+                </div>
+            </div> <!---------Modal Body close----------> 
+        </div>
+    </div>
+</div>

@@ -1,0 +1,297 @@
+<div class="main-wrapper animateIt">
+  <div class="container-fluid">
+    <div class="pageTitle">
+      <div class="row">
+        <div class="col-md-10 col-sm-12 col-xs-12">
+          <h3 style="margin-top: 8px;">Add Blocks of Your {{assnName}} Association</h3>
+        </div>
+        <div class="col-md-2 col-sm-12 col-xs-12">
+          <a (click)="gotoviewBlocks()">
+            <button type="button" class="btn btn-danger pull-right"><i class="fa fa-times"></i> Cancel</button>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <form name="crtBlock" class="needs-validation" #frm #ctrateBlockform='ngForm' role="form" autocomplete="off"
+        (ngSubmit)='createBlock(frm)'>
+
+        <fieldset class="scheduler-border">
+          <legend class="scheduler-border headingOrange">Blocks Details</legend>
+
+
+
+          <div class="row">
+
+            <div class="col-sm-4 col-xs-12">
+              <div class="form-group">
+                <label id=label1>Block Name <span class="red">*</span></label>
+                <input type="text" name="blockname" id="input1" autocomplete='blockname' [(ngModel)]="blockname"
+                  #blocknameControl="ngModel" class="form-control" placeholder="Block Name" pattern="[a-zA-Z0-9-]*"
+                  required />
+                <p class="invalid-feedback">Valid name is required
+                </p>
+              </div>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+                <div class="form-group">
+                  <label>Block Type <span class="red">*</span></label>
+                  <input class="form-control" list="browsers" name="blocktype" [(ngModel)]="blocktype" placeholder="Select Block" #blocktypeControl='ngModel' required multiple>
+                  <datalist id="browsers">
+                   <option value="">Select Block</option>
+                   <option value="Residential"></option>
+                   <option value="Commercial"></option>
+                   <option value="Residential and Commercial"></option>
+                    <!-- <option *ngFor="let blktype of blocktypes" [value]="blktype['name']">
+                        {{blktype['displayName']}}
+                    </option>  -->
+                  </datalist>
+                  <p class="invalid-feedback">Valid block type is required
+                  </p>
+                </div>
+              </div>
+
+            <div class="col-sm-4 col-xs-12">
+              <div class="form-group">
+                <label id=label3>No of Units <span class="red">*</span></label>
+                <input type="text" name="noofunits" id="input3" autocomplete='noofunits' [(ngModel)]="noofunits"
+                  #noofunitsControl="ngModel" class="form-control" placeholder="No Of Units" pattern="[0-9]*"
+                  required />
+                <p class="invalid-feedback">No of units are required
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-3 col-sm-12"></div>
+            <div class="col-sm-3 col-sm-12"></div>
+            <div class="col-sm-3 col-sm-12"></div>
+            <div class="col-sm-3 col-sm-12"></div>
+
+          </div>
+        </fieldset>
+
+        <!--Manager Details Starts-->
+        <fieldset class="scheduler-border">
+          <legend class="scheduler-border headingOrange">Manager Details</legend>
+          <div class="row">
+            <div class="col-sm-4 col-xs-12">
+              <div class="form-group">
+                <label id=label4>Manager Name <span class="red">*</span></label>
+                <input type="text" name="mngName" id="input4" autocomplete='mngName' [(ngModel)]="mngName"
+                  #managernameControl="ngModel" class="form-control" placeholder="Manager Name" pattern="[a-zA-Z]*"
+                  required />
+                <p class="invalid-feedback">Manager name is required</p>
+              </div>
+            </div>
+
+
+            <div class="col-sm-4 col-xs-12">
+              <div class="form-group">
+                <label id=label5>Manager Mobile Number <span class="red">*</span></label>
+                <input type="text" name="mobile" id="input5" autocomplete='mobile' [(ngModel)]="mobile"
+                  #managernumberControl="ngModel" class="form-control" placeholder="Manager Mobile Number"
+                  minlength="10" maxlength="10" pattern="[0-9]*" required (keypress)=_keyPress($event)/>
+                <p class="invalid-feedback">Manager mobile number is required</p>
+              </div>
+            </div>
+
+            <div class="col-sm-4 col-xs-12">
+              <div class="form-group">
+                <label id=label6>Manager Email Id <span class="red">*</span></label>
+                <input type="text" name="manageremail" id="input6" autocomplete='manageremail'
+                  [(ngModel)]="manageremail" #manageremailControl="ngModel" class="form-control"
+                  placeholder="Manager Email Id"
+                  pattern="[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*"
+                  required />
+                <p class="invalid-feedback">Manager email-id is required
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-3 col-sm-12"></div>
+            <div class="col-sm-3 col-sm-12"></div>
+            <div class="col-sm-3 col-sm-12"></div>
+            <div class="col-sm-3 col-sm-12"></div>
+
+          </div>
+        </fieldset>
+
+        <fieldset class="scheduler-border">
+          <legend class="scheduler-border headingOrange">Maintenance Details</legend>
+          <div class="row">
+            <div class="col-sm-4 col-xs-12">
+              <div class="form-group">
+                <label>Select Rate <span class="red">*</span></label> <br>
+                <input type="checkbox" name="rate" [(ngModel)]="rate" (change)="checkRate(rate)" value="flatRatevalue">
+                &nbsp;
+                <label>Flat Rate Value</label>
+                &nbsp;&nbsp;&nbsp;
+                <input type="checkbox" name="rate" [(ngModel)]="rate1" (change)="checkRate1(rate1)" value="dimension">
+                &nbsp;
+                <label>Dimension Based</label>
+              </div>
+            </div>
+
+            <div class="col-sm-4 col-xs-12" *ngIf="addRate == 'flatRatevalue'">
+              <div class="form-group">
+                <label>Flat Rate Value <span class="red">*</span></label>
+                <input class="form-control" type="text" name="flatRatevalue" [(ngModel)]="flatRatevalue"
+                  placeholder="Value" #flatRatevalueControl='ngModel' pattern="^[+-]?((\.\d+)|(\d+(\.\d+)?))$" required>
+                <p class="invalid-feedback">Invalid flat rate
+                </p>
+                <small>Amount to be charged</small>
+              </div>
+            </div>
+            <div class="col-sm-4 col-xs-12" *ngIf="addRate1 == 'dimension'">
+              <div class="form-group">
+                <label>Maintenance Value<span class="red">*</span></label>
+                <input class="form-control" type="text" name="maintenanceValue" #maintenanceValueControl='ngModel'
+                  [(ngModel)]="maintenanceValue" placeholder="Maintenance Value " required
+                  pattern="^[0-9]+(\.[0-9]{1,2})?$">
+                <p class="invalid-feedback">Invalid Maintenance Value
+                </p>
+                <small>Rate (SQFT / SQMTR) </small>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+
+            <div class="col-sm-6 col-xs-12">
+              <div class="form-group">
+                <label>Unit of Measurement <span class="red">*</span></label>
+                <input class="form-control" type="text" required name="measurements" autocomplete="measurements"
+                  [(ngModel)]="measurements" #measurementsControl='ngModel' placeholder="Measurement Type">
+                <p class="invalid-feedback">Invalid Measurement
+                </p>
+              </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group">
+                  <label>Invoice Creation Frequency <span class="red">*</span></label>
+                  <input class="form-control" list="frquency" name="frequency" [(ngModel)]="frequency" placeholder="Search or Select Frequency" #frequencyControl='ngModel' required multiple>
+                  <datalist id="frquency">
+                    <option value="">Select Frequency</option>
+                    <option *ngFor="let frequency of frequencies" [value]="frequency['displayName']">
+                      {{frequency['displayName']}}
+                    </option>
+                  </datalist>
+                  <p class="alerts" *ngIf="frequencyControl.invalid && frequencyControl.touched">Invalid Invoice Frequency
+                    </p>
+                </div>
+              </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6 col-xs-12">
+              <div class="form-group">
+                <label>Next Invoice Generation Date <span class="red">*</span></label>
+                <input type="text" class="form-control" name="billGenerationDate" #NextInvoiceGenDateControl='ngModel'
+                  placeholder="Next Invoice Generation Date" [bsConfig]="bsConfig" [(ngModel)]="billGenerationDate"
+                  bsDatepicker required (bsValueChange)="onValueChange($event)" />
+                <p class="invalid-feedback">Invoice Generation Date required
+                </p>
+              </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+              <div class="form-group">
+                <label>Due Date <span class="red">*</span></label>
+                <input type="text" class="form-control" [class.enableBorderColor]="enableduedatevalidation" [class.classForInvalid]="enableduedatevalidation" name="dueDate" #DueDateControl='ngModel' placeholder="Due Date"
+                  [bsConfig]="bsConfig" [(ngModel)]="dueDate" bsDatepicker required [minDate]="minDate"
+                  (bsValueChange)="onDueDateValueChange($event)" />
+                <p class="invalid-feedback">Due date required
+                </p>
+                <ng-container *ngIf='enableduedatevalidation'>
+                  <p class="invalidFeedback">Due date should be greater than or equal to
+                      invoice date
+                  </p>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+
+              <div class="col-sm-4 col-xs-12">
+              
+                <div class="form-group">
+              
+                  <label>Late Payment Charge Type <span class="red">*</span></label>
+                  <input class="form-control" list="email" name="latePymtChargeType" [(ngModel)]="latePymtChargeType"
+                    placeholder="Search or Select Charge Type" #latePymtChargeTypeControl='ngModel' required>
+                  <datalist id="email">
+                    <option disabled="true" value="">Select Charge Type</option>
+                    <option *ngFor='let lpct of latePymtChrgTypes' [value]="lpct['name']">
+                      {{lpct['name']}}
+                    </option>
+                  </datalist>
+                  <p class="invalid-feedback">Select Late Payment Charge Type
+                  </p>
+              
+                </div>
+              
+              </div>
+
+            <div class="col-sm-4 col-xs-12">
+
+              <div class="form-group">
+
+                <label>Late Payment Charge <span class="red">*</span></label>
+
+                <input class="form-control" type="text" #latePymtChargeControl='ngModel' name="latePymtCharge"
+                  autocomplete="latePymtCharge" [(ngModel)]="latePymtCharge" placeholder="Late Payment charge"
+                  pattern="^[0-9]*" required>
+
+                <p class="invalid-feedback">Invalid Late Payment Charge
+                </p>
+              </div>
+
+            </div>
+
+            <div class="col-sm-4 col-xs-12">
+
+              <div class="form-group">
+
+                <label>Starts From<span class="red">*</span></label>
+
+                <input class="form-control" type="text" name="startsFrom" #StartsFromDateControl='ngModel'
+                [class.classForInvalid]="enablestartfromdatevalidation" placeholder="Starts From Date" [bsConfig]="bsConfig" [(ngModel)]="startsFrom" bsDatepicker required
+                  [minDate]='startsFromMaxDate' (bsValueChange)="onStartsFromDateValueChange($event)"/>
+                  <p class="invalid-feedback">Select Date</p>
+                <ng-container *ngIf='enablestartfromdatevalidation'>
+                    <p class="invalidFeedback">Starts from date should be greater than or equal to due date</p>
+                </ng-container>
+                
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+        </fieldset>
+
+        <div class="row">
+          <div class="col-sm-3 col-sm-12"></div>
+          <div class="col-sm-3 col-sm-12"></div>
+          <div class="col-sm-3 col-sm-12"></div>
+          <div class="col-sm-3 col-sm-12">
+            <div class="btn-group pull-right">
+              <button type="submit" class="btn btn-primary pull-right">
+                <i class="fa fa-plus"></i> Add Block
+              </button> &nbsp; &nbsp;
+              <button type="reset" (click)='removeValidationClass(frm)' class="mdButton1">Reset</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!---->

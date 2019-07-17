@@ -1,0 +1,55 @@
+<div class="main-wrapper animateIt">
+    <div class="container-fluid">
+        <div class="pageTitle">
+            <div class="row">
+                <div class="col-sm-4 col-xs-12">
+                    <h3>View Receipt</h3>
+                </div>
+                <div class="col-sm-4 col-xs-12">
+                    <input type="text" name="searchBoxData" [(ngModel)]="searchBoxData" class="form-control"
+                        placeholder="Start Typing, this is dynamic search" />
+                </div>
+                <div class="col-sm-4 col-xs-12">
+                    <a (click)='gotoGenerateReceipt()'>
+                        <button type="button" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Generate Receipts</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="table-responsive">
+                        <table class="table" id="example">
+                            <thead>
+                                <tr>
+                                    <th>Unit Identifier</th>
+                                    <th>Invoice No</th>
+                                    <th>Date of Payment</th>
+                                    <th>Amount</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let view of viewPayments">
+                                    <td>{{view['unUnitID']}}</td>
+                                    <td>{{view['inNumber']}}</td>
+                                    <td>{{view['pyDate'] | date : "M-d-y"}}</td>
+                                    <td><i class="fa fa-inr"></i> {{view['pyAmtPaid']}}</td>
+                                    <td> <i style="cursor: pointer"
+                                            (click)="viewReceipt(viewreceiptmodal,view['unUnitID'],view['inNumber'],view['pyDate'],view['pyAmtPaid'])"
+                                            class="fa fa-eye"></i> </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
